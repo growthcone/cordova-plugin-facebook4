@@ -132,9 +132,16 @@ exports.api = function api (graphPath, permissions, s, f) {
   })
 }
 
-exports.browserInit = function browserInit (appId, version, s) {
-  console.warn("browserInit is deprecated and may be removed in the future");
-  console.trace();
+exports.browserInit = function browserInit (appId, version) {
+  FB.init({
+    appId      : appId,  // APP_ID is populated by the cordova after_prepare hook
+    xfbml      : true,
+    version    : version
+  });
+
+  __fbSdkReady = true;
+  //console.warn("browserInit is deprecated and may be removed in the future");
+  //console.trace();
 }
 
 if (window.location.protocol === "file:") {
